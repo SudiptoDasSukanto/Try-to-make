@@ -5,7 +5,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <bits/stdc++.h>
-using namespace std;
+
 #define WINDOW_WIDTH (1280)
 #define WINDOW_HEIGHT (720)
 #define SCROLL_SPEED (300)

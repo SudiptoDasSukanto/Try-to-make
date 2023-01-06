@@ -4,7 +4,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <bits/stdc++.h>
-using namespace std;
+
 #define WINDOW_WIDTH (1280)
 #define WINDOW_HEIGHT (720)
 #define SCROLL_SPEED (300)
@@ -26,9 +26,9 @@ bool init(){
     printf("Initialization Complete\n");
     if (TTF_Init() < 0)
     {
-        cout << "error";
+        printf("error\n");
     }
-    SDL_Window *win = SDL_CreateWindow("THE LIVING DEAD", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+    win = SDL_CreateWindow("THE LIVING DEAD", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
 
     if (!win)
     {
@@ -38,7 +38,7 @@ bool init(){
     }
     // Mix_PlayChannel(-1,music,0);
     Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
-    SDL_Renderer *rend = SDL_CreateRenderer(win, -1, render_flags);
+    rend = SDL_CreateRenderer(win, -1, render_flags);
 
     if (!rend)
     {
