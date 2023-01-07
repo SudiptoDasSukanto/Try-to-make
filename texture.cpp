@@ -112,7 +112,7 @@
         SDL_Quit();
         return 1;
     }
-    SDL_Texture *Sec_Back_tex0 = SDL_CreateTextureFromSurface(rend, surface);
+    Sec_Back_tex0 = SDL_CreateTextureFromSurface(rend, surface);
     SDL_FreeSurface(surface);
 
     surface = IMG_Load("res/NewGame.png");

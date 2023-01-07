@@ -1,6 +1,6 @@
 #include "AllHeader.h"
 
-SDL_Rect gameover_rect,replay_rect, dest, dest1[100], dest2, dest22, dest_fire, newgame, playerRect, playerPosition, ZoombieRect, ZoombiePosition, option_1, option_2, option_3, option_4, option_5, score_rect, Time_rect, score_image, Time_image ;
+SDL_Rect gameover_rect,replay_rect, dest, dest1[100], dest2, dest22, dest_fire,dest_fire1, newgame, playerRect, playerPosition, ZoombieRect, ZoombiePosition, option_1, option_2, option_3, option_4, option_5, score_rect, Time_rect, score_image, Time_image ;
 int textureWidth, textureHeight, frameH, frameW, textureWidth1, textureHeight1, frameH1, frameW1; 
 bool rect(){
 
@@ -17,6 +17,7 @@ bool rect(){
     SDL_QueryTexture(tex2, NULL, NULL, &dest22.w, &dest22.h);
 
     SDL_QueryTexture(fire, NULL, NULL, &dest_fire.w, &dest_fire.h);
+    SDL_QueryTexture(fire, NULL, NULL, &dest_fire1.w, &dest_fire1.h);
     SDL_QueryTexture(NewGame_tex, NULL, NULL, &newgame.w, &newgame.h);
 
 
@@ -38,7 +39,9 @@ bool rect(){
     dest22.h = 720;
     dest22.x = -dest22.w;
     dest22.y = 0;
-    dest_fire = {(WINDOW_WIDTH * 0.5, 550), (dest_fire.w * .1), (dest_fire.h * .1)};
+    dest_fire = {WINDOW_WIDTH * .5, 550, (int)(dest_fire.w * .1), (int)(dest_fire.h * .1)};
+
+    dest_fire1 = {WINDOW_WIDTH * 1, 400, (int)(dest_fire1.w * .1), (int)(dest_fire1.h * .1)};
 
     // int textureWidth, textureHeight;
     // int frameH, frameW;

@@ -4,6 +4,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <bits/stdc++.h>
+#include "AllHeader.h"
 
 #define WINDOW_WIDTH (1280)
 #define WINDOW_HEIGHT (720)
@@ -47,4 +48,20 @@ bool init(){
         SDL_Quit();
         return 1;
     }
+
+
+}
+
+void close(){
+    SDL_RenderPresent(rend);
+    
+    
+    SDL_DestroyRenderer(rend);
+    SDL_DestroyWindow(win);
+    SDL_DestroyTexture(charli1);
+
+    SDL_DestroyTexture(charli2);
+   // SDL_DestroyWindow(win);
+
+    SDL_Quit();
 }

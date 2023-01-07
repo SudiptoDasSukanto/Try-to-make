@@ -13,3 +13,4 @@ extern SDL_Window *win;
 extern SDL_Renderer *rend;
 extern SDL_Surface *surface;
 bool init();
+void close();

@@ -1,12 +1,19 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_timer.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
+#include <bits/stdc++.h>
+using namespace std;
+#define WINDOW_WIDTH (1280)
+#define WINDOW_HEIGHT (720)
+#define SCROLL_SPEED (300)
 
-#include "Init.h"
-#include "texture.h"
 float frameTime = 0;
 int prevTime = 0;
 int currentTime = 0;
 float deltaTime = 0;
 int score = 0;
-
 
 int target;
 const int menu = 30;
@@ -28,21 +35,61 @@ int getHighScore()
 
 int main(int agr, char *args[])
 {
-    init();
-    TexLoad();
 target =menu;
 SDL_Event ev ;
-    // if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-    // {
-    //     printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
-    // }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+    }
     // Mix_Init();
     Mix_Chunk *music = Mix_LoadWAV("res/FesliyanStudios.com.mp3");
     Mix_Chunk *mouse_click = Mix_LoadWAV("res/mouseclick.mp3");
-    
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) > 0)
+    {
+        printf("video and timer: %s\n", SDL_GetError());
+    }
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG)))
+        printf("image: %s\n", SDL_GetError());
 
-   
-   
+    printf("Initialization Complete\n");
+    if (TTF_Init() < 0)
+    {
+        cout << "error";
+    }
+    SDL_Window *win = SDL_CreateWindow("THE LIVING DEAD", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE);
+
+    if (!win)
+    {
+        printf("window: %s\n", SDL_GetError());
+        SDL_Quit();
+        return 1;
+    }
+    // Mix_PlayChannel(-1,music,0);
+    Uint32 render_flags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    SDL_Renderer *rend = SDL_CreateRenderer(win, -1, render_flags);
+
+    if (!rend)
+    {
+        printf("renderer: %s\n", SDL_GetError());
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+        return 1;
+    }
+
+    SDL_Texture *charli1, *charli2, *tex2, *fire, *tex4, *temp, *temp2;
+    SDL_Surface *surface = IMG_Load("res/charli.png");
+    if (!surface)
+    {
+        printf("start Surface Error: %s\n", IMG_GetError());
+        SDL_DestroyRenderer(rend);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+        return 1;
+    }
+
+    charli1 = SDL_CreateTextureFromSurface(rend, surface);
+    // SDL_SetTextureColorMod(tex1,200,255,255);
+    SDL_FreeSurface(surface);
 
     SDL_Surface *surfaces = IMG_Load("res/score.jpg");
     SDL_Surface *surfacet = IMG_Load("res/time.jpg");
@@ -68,7 +115,31 @@ SDL_Event ev ;
       SDL_Texture *tex_dark = SDL_CreateTextureFromSurface(rend, surfaced);
     temp2 = charli1;
 
-  
+    surface = IMG_Load("res/charli reverse.png");
+    if (!surface)
+    {
+        printf("start Surface Error: %s\n", IMG_GetError());
+        SDL_DestroyRenderer(rend);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+        return 1;
+    }
+
+    charli2 = SDL_CreateTextureFromSurface(rend, surface);
+    // SDL_SetTextureColorMod(tex1,200,255,255);
+    SDL_FreeSurface(surface);
+
+    surface = IMG_Load("res/tree.png");
+    if (!surface)
+    {
+        printf("start Surface Error: %s\n", IMG_GetError());
+        SDL_DestroyRenderer(rend);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+        return 1;
+    }
+    tex2 = SDL_CreateTextureFromSurface(rend, surface);
+    SDL_FreeSurface(surface);
 
     surface = IMG_Load("res/moon.png");
     if (!surface)
@@ -82,7 +153,19 @@ SDL_Event ev ;
     SDL_Texture *moon_tex = SDL_CreateTextureFromSurface(rend, surface);
     SDL_FreeSurface(surface);
 
-    
+    surface = IMG_Load("res/fire.png");
+    if (!surface)
+    {
+        printf("start Surface Error: %s\n", IMG_GetError());
+        SDL_DestroyRenderer(rend);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+        return 1;
+    }
+    // SDL_SetColorKey(surface,SDL_TRUE,SDL_MapRGB(surface->format,255,255,255));
+    fire = SDL_CreateTextureFromSurface(rend, surface);
+    // SDL_SetTextureColorMod(tex3,200,200,200);
+    SDL_FreeSurface(surface);
 
     surface = IMG_Load("res/start.png");
     if (!surface)
@@ -256,13 +339,13 @@ SDL_Event ev ;
     newgame.x = 475;
     newgame.y = 140;
 
-    for(int i=0; i<100; i++)
-    {
-        dest1[i].w = (int) dest1[i].w * 0.8;
-        dest1[i].h = (int) dest1[i].h * 0.8;
-        dest1[i].x = 0;
-        dest1[i].y = 0;
-    }
+    // for(int i=0; i<100; i++)
+    // {
+    //     dest1[i].w = (int) dest1[i].w * 0.8;
+    //     dest1[i].h = (int) dest1[i].h * 0.8;
+    //     dest1[i].x = 0;
+    //     dest1[i].y = 0;
+    // }
     dest2.w = 1280;
     dest2.h = 720;
     dest2.x = 0;
@@ -271,7 +354,7 @@ SDL_Event ev ;
     dest22.h = 720;
     dest22.x = -dest22.w;
     dest22.y = 0;
-    dest_fire = {(WINDOW_WIDTH * 0.5, 550), (dest_fire.w * .1), (dest_fire.h * .1)};
+    dest_fire = {WINDOW_WIDTH * 0.5, 550, (int)(dest_fire.w * .1), (int)(dest_fire.h * .1)};
 
     SDL_Rect playerRect;     // rect for a single frame of the sprite sheet
     SDL_Rect playerPosition; // rect for the whole sprite sheet
@@ -509,6 +592,7 @@ SDL_Event ev ;
             SDL_RenderCopy(rend, temp2, &playerRect, &playerPosition);
             SDL_RenderCopy(rend, temp, &ZoombieRect, &ZoombiePosition);
             SDL_RenderCopyEx(rend, fire, 0, &dest_fire, 0, 0, SDL_FLIP_HORIZONTAL);
+            SDL_RenderPresent(rend);
 
             dest_fire.x -= 3;
 
