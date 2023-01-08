@@ -3,7 +3,7 @@
 void Gameover(){
     // Mix_PlayChannel( -1, replay1, 0 );
             SDL_RenderClear(rend);
-            TTF_Font *gFont = TTF_OpenFont("Times.ttf", 58);
+            TTF_Font *gFont = TTF_OpenFont("times.ttf", 58);
             SDL_Color color = {255, 0, 0, 255};
             std::string s = std::to_string(score);
             SDL_Surface *surface1 = TTF_RenderText_Solid(gFont, s.c_str(), color);

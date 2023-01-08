@@ -202,10 +202,6 @@
 
 
 
-
-
-
-
     surface = IMG_Load("res/score.jpg");
     if (!surface)
     {

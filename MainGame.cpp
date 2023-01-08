@@ -53,7 +53,7 @@ void Game(){
             //SDL_RenderCopyEx(rend, fire, 0, &dest_fire1, 0, 0, SDL_FLIP_HORIZONTAL);
 
             dest_fire.x -= 3;
-            dest_fire1.x -= 2;
+            // dest_fire1.x -= 2;
 
             if ((playerPosition.x + playerPosition.w >= dest_fire.x && playerPosition.x <= dest_fire.x && playerPosition.y <= dest_fire.y && playerPosition.y + playerPosition.h >= dest_fire.y))
             {
@@ -110,39 +110,6 @@ void Game(){
                 dest_fire.x = WINDOW_WIDTH;
             }
 
-            // for(int j=0; j<=99; j++)
-            // {
-            //     if(cnt[j])
-            //         cout<<"cnt"<<j<<" "<<cnt[j]<<endl;
-
-            // if(cnt[j])
-            // {
-            //     if(!one[j])
-            //         dest1[j].x=(int)x_pos+270;
-            //     one[j]=1;
-
-            //     if(!flag[j])
-            //     {
-            //         dest1[j].y=dest.y+73;
-            //         flag[j]=1;
-            //     }
-
-            //     SDL_RenderCopy(rend, tex1, NULL, &dest1[j]);
-
-            //     dest1[j].x+=6;
-
-            //     if(dest1[j].x>=1680)
-            //     {
-            //         cnt[j]=0;
-            //         flag[j]=0;
-            //         one[j]=0;
-            //     }
-            // }
-            // }
-            // if(x_pos>=WINDOW_WIDTH)
-            // {
-            //     x_pos=-400;
-            // }
             if (dest.y <= 380)
             {
                 dest.y = WINDOW_HEIGHT * 0.45;

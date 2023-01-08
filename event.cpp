@@ -26,7 +26,7 @@ void GetEvent(){
                     }
                     if (playerRect.y + playerRect.h >= textureHeight)
                         playerRect.y = 0;
-                    playerPosition.y += jump_hight;
+                    // playerPosition.y += jump_hight;
                 }
 
                 else if (e.key.keysym.sym == SDLK_UP)
@@ -42,6 +42,8 @@ void GetEvent(){
                     if (playerRect.y + playerRect.h >= textureHeight)
                         playerRect.y = 0;
                     playerPosition.y -= jump_hight;
+                    if(playerRect.x<ZoombieRect.x) {playerPosition.x += jump_hight; SDL_Delay(500); playerPosition.y+=jump_hight;}
+                    else playerPosition.x -= jump_hight;
                 }
                 else if (e.key.keysym.sym == SDLK_RIGHT)
                 {

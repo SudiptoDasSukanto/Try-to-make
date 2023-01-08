@@ -63,5 +63,7 @@ void close(){
     SDL_DestroyTexture(charli2);
    // SDL_DestroyWindow(win);
 
-    SDL_Quit();
+   TTF_Quit();
+  IMG_Quit();
+  SDL_Quit();
 }

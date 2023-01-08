@@ -81,6 +81,7 @@ bool rect(){
     option_1.h = 71;
     option_1.w = 382;
 
+
     option_2.x = 381;
     option_2.y = 242;
     option_2.h = 95;
