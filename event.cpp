@@ -4,6 +4,7 @@ SDL_Event e;
 bool Running = true;
 int jump_hight = 200;
 
+
 void GetEvent(){
     while (SDL_PollEvent(&e))
         {
@@ -16,17 +17,15 @@ void GetEvent(){
                 if (e.key.keysym.sym == SDLK_DOWN)
 
                 {
-
                     playerRect.x += frameW;
                     if (playerRect.x + frameW >= textureWidth)
                     {
-
                         playerRect.y += frameH;
                         playerRect.x = 0;
                     }
                     if (playerRect.y + playerRect.h >= textureHeight)
                         playerRect.y = 0;
-                    // playerPosition.y += jump_hight;
+                    if(playerPosition.y<500) playerPosition.y += jump_hight;
                 }
 
                 else if (e.key.keysym.sym == SDLK_UP)
@@ -41,9 +40,9 @@ void GetEvent(){
                     }
                     if (playerRect.y + playerRect.h >= textureHeight)
                         playerRect.y = 0;
-                    playerPosition.y -= jump_hight;
-                    if(playerRect.x<ZoombieRect.x) {playerPosition.x += jump_hight; SDL_Delay(500); playerPosition.y+=jump_hight;}
-                    else playerPosition.x -= jump_hight;
+                    if(playerPosition.y>300) playerPosition.y -= jump_hight;
+                   // if(playerRect.x<ZoombieRect.x) {playerPosition.x += jump_hight; SDL_Delay(500); playerPosition.y+=jump_hight;}
+                    //else playerPosition.x -= jump_hight;
                 }
                 else if (e.key.keysym.sym == SDLK_RIGHT)
                 {

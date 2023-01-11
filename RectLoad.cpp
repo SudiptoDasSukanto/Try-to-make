@@ -1,6 +1,6 @@
 #include "AllHeader.h"
 
-SDL_Rect gameover_rect,replay_rect, dest, dest1[100], dest2, dest22, dest_fire,dest_fire1, newgame, playerRect, playerPosition, ZoombieRect, ZoombiePosition, option_1, option_2, option_3, option_4, option_5, score_rect, Time_rect, score_image, Time_image ;
+SDL_Rect gameover_rect,replay_rect, dest, dest1[100], dest2, dest22, dest_fire,dest_fire1, newgame, playerRect, playerPosition, ZoombieRect, ZoombiePosition, option_1, option_2, option_3, option_4, option_5, score_rect, Time_rect, score_image, Time_image,home_rect ;
 int textureWidth, textureHeight, frameH, frameW, textureWidth1, textureHeight1, frameH1, frameW1; 
 bool rect(){
 
@@ -126,5 +126,10 @@ bool rect(){
     Time_image.y = -70;
     Time_image.h = 300;
     Time_image.w = 150;
+
+    SDL_QueryTexture(home, NULL, NULL, &home_rect.w, &home_rect.h);
+    home_rect.x = 510 ;
+    home_rect.y = 530 ;
+
 
 }

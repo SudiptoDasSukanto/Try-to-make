@@ -4,7 +4,7 @@ int target;
 int menu;
 
 SDL_Event ev;
-Mix_Chunk *music, *mouse_click;
+Mix_Chunk *music1 , *music2, *mouse_click;
 int closeFlag = 0;
 void CallMenu()
 {

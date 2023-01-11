@@ -15,13 +15,18 @@ int main(int agr, char *args[])
     init();
     TexLoad();
     rect();
-    music = Mix_LoadWAV("res/FesliyanStudios.com.mp3");
+    music1 = Mix_LoadWAV("res/FesliyanStudios.com.mp3");
+    music2 = Mix_LoadWAV("res/intro.mp3");
+
     mouse_click = Mix_LoadWAV("res/mouseclick.mp3");
+    
     while (Running)
     {  
         prevTime = currentTime;
         // currentTime = SDL_GetTicks();
         deltaTime = (currentTime - prevTime) / 1000.0f;
+         Mix_PlayChannel(-1, music2, 1);
+
         GetEvent();
         if (main_game) Game();   
         else if (start)  Start();

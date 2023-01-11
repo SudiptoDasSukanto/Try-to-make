@@ -10,14 +10,14 @@ float frameTime = 0;
     int gameover = 0;
     int score=0;
     int Time;
-// int getHighScore()
-// {
-//     int scores;
-//     FILE *q = fopen("highscore.txt", "r");
-//     fscanf(q, "%d", &scores);
-//     fclose(q);
-//     return scores;
-// }
+int getHighScore()
+{
+    int scores;
+    FILE *q = fopen("highscore.txt", "r");
+    fscanf(q, "%d", &scores);
+    fclose(q);
+    return scores;
+}
 void Game(){
      Time = SDL_GetTicks();
             frameTime++;
